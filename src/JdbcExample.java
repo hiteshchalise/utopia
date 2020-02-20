@@ -2,22 +2,39 @@ import java.sql.*;
 
 public class JdbcExample {
 
-    public static void main(String[] args) throws Exception{
-        Class.forName("com.mysql.cj.jdbc.Driver");
+    public static void main(String[] args) {
         String query = "SELECT * FROM book;";
-        Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/mydb",
-                "root",
-                "pass");
-        Statement stmt = conn.createStatement();
-        ResultSet resultSet = stmt.executeQuery(query);
-        while(resultSet.next()){
-            int i = resultSet.getMetaData().getColumnCount();
-            for (int j = 0; j < i; j++) {
-                System.out.println("Column: " + j + " data: " + resultSet.getObject(j + 1) );
+
+        try {
+            // Registering driver.
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establishing connection.
+            Connection conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/mydb",
+                    "root",
+                    "pass");
+
+            // Creating statement.
+            Statement stmt = conn.createStatement();
+
+            // Executing Query
+            ResultSet resultSet = stmt.executeQuery(query);
+
+            // Using the result.
+            while (resultSet.next()) {
+                int columnCount = resultSet.getMetaData().getColumnCount();
+                for (int i = 0; i < columnCount; i++) {
+                    System.out.print(resultSet.getObject(i + 1) + " ");
+                }
+                System.out.println();
             }
+
+            // Closing statement and connection.
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        stmt.close();
-        conn.close();
     }
 }
