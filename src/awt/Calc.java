@@ -3,6 +3,7 @@ package awt;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 
 public class Calc extends Frame{
 
@@ -11,7 +12,6 @@ public class Calc extends Frame{
     public Calc(){
         btn = new Button("Click Me!!");
         ActionImpl listener = new ActionImpl();
-        add(btn);
         btn.addActionListener(listener);
     }
 
@@ -29,5 +29,7 @@ public class Calc extends Frame{
         c.setVisible(true);
         c.setSize(100, 100);
 
+        c.addWindowListener(new WindowAdapter() {
+        });
     }
 }

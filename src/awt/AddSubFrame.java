@@ -75,4 +75,11 @@ public class AddSubFrame extends Frame{
 
         });
     }
+
+    class SomeAdapeter extends WindowAdapter{
+
+        public void windowClosing(WindowEvent e) {
+            System.exit(0);
+        }
+    }
 }
