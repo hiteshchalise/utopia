@@ -5,13 +5,7 @@ import java.awt.event.ActionListener;
 
 public class CalculatorController {
 
-    private final CalculatorModel calculatorModel;
-    private final CalculatorView calculatorView;
-
     CalculatorController(CalculatorModel calculatorModel, CalculatorView calculatorView){
-
-        this.calculatorModel = calculatorModel;
-        this.calculatorView = calculatorView;
 
         calculatorView.addButtonListener(new ActionListener(){
             @Override
