@@ -1,15 +1,12 @@
 package swing;
 
 import javax.swing.*;
-import javax.swing.event.ListDataListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.net.URL;
 
 public class SwingComponents extends JFrame {
 
-    public SwingComponents(){
+    public SwingComponents() {
 
 
         JPanel mainPanel = new JPanel();
@@ -19,7 +16,7 @@ public class SwingComponents extends JFrame {
         jToggleButton.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent itemEvent) {
-                if(jToggleButton.isSelected()) jToggleButton.setText("Off");
+                if (jToggleButton.isSelected()) jToggleButton.setText("Off");
                 else jToggleButton.setText("On");
             }
         });
@@ -39,9 +36,9 @@ public class SwingComponents extends JFrame {
 
 
         // JRadioButton
-        JRadioButton r1=new JRadioButton("A) Male", true);
-        JRadioButton r2=new JRadioButton("B) Female");
-        
+        JRadioButton r1 = new JRadioButton("A) Male", true);
+        JRadioButton r2 = new JRadioButton("B) Female");
+
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(r1);
         buttonGroup.add(r2);
@@ -51,10 +48,16 @@ public class SwingComponents extends JFrame {
 
         // Tabbed Pane
         JTabbedPane jTabbedPane = new JTabbedPane();
-        jTabbedPane.setBounds(0,0,400,400);
+        jTabbedPane.setBounds(0, 0, 400, 400);
         jTabbedPane.add("tb", jTogglePanel);
         jTabbedPane.add("cb", jCheckBoxPanel);
         jTabbedPane.add("rb", jRadioButtonPanel);
+
+        String imagePath = "hand.png";
+        java.net.URL imgURL = getClass().getResource(imagePath);
+        ImageIcon imageIcon = new ImageIcon(imgURL, "description");
+        JLabel imageLabel = new JLabel("", imageIcon, JLabel.CENTER);
+        mainPanel.add(imageLabel);
 
         mainPanel.add(jTabbedPane);
 
